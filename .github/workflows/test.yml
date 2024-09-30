@@ -1,0 +1,39 @@
+name: Tests
+on:
+  pull_request:
+    paths-ignore:
+      - "**.md"
+      - "g3doc/**"
+  push:
+    paths-ignore:
+      - "**.md"
+      - "g3doc/**"
+  workflow_dispatch:
+      
+
+jobs:
+  tests:
+    if: github.actor != 'copybara-service[bot]'
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+
+      - name: Build Wheel
+        uses: ./.github/actions/build
+        with:
+          python-version: ${{ matrix.python-version}}
+
+      - name: Install built wheel
+        run: |
+          pip install dist/*.whl
+
+      - name: Run unit tests
+        shell: bash
+        run: |
+          pytest
