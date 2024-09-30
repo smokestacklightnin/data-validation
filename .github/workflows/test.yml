@@ -15,7 +15,9 @@ jobs:
   tests:
     if: github.actor != 'copybara-service[bot]'
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        shell: bash
     strategy:
       matrix:
         python-version: ["3.9", "3.10", "3.11"]
@@ -35,11 +37,10 @@ jobs:
           merge-multiple: true
           path: wheels
 
-      - name: Install built wheel
+      - name: Install built wheel        
         run: |
           pip install dist/*.whl
 
       - name: Run unit tests
-        shell: bash
         run: |
           pytest
