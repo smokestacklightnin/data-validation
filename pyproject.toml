@@ -19,3 +19,9 @@ requires = [
   # Required for using org_tensorflow bazel repository.
   "numpy~=1.22.0",
 ]
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+testpaths = ["tensorflow_data_validation"]
+python_files = ["*_test.py"]
+norecursedirs = [".*"]
