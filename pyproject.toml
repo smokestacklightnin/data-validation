@@ -21,7 +21,7 @@ requires = [
 ]
 
 [tool.pytest.ini_options]
-addopts = "--import-mode=importlib"
+addopts = "--import-mode=importlib --ignore-glob='*bazel*'"
 testpaths = ["tensorflow_data_validation"]
 python_files = ["*_test.py"]
 norecursedirs = [".*"]
