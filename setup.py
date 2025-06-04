@@ -207,7 +207,7 @@ setup(
     extras_require={
         "mutual-information": _make_mutual_information_requirements(),
         "visualization": _make_visualization_requirements(),
-        "dev": ["precommit"],
+        "dev": ["precommit", "cibuildwheel", "build"],
         "test": [
             "pytest",
             "scikit-learn",
