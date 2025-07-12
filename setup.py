@@ -236,8 +236,9 @@ setup(
     python_requires=">=3.9,<4",
     packages=find_packages(),
     include_package_data=True,
-    package_data={"": ["*.lib", "*.pyd", "*.so"]},
-    data_files=[("docs_reqs", ["requirements-docs.txt"])],
+    package_data={
+        "": ["*.lib", "*.pyd", "*.so", "requirements-docs.txt"],
+    },
     zip_safe=False,
     distclass=_BinaryDistribution,
     description="A library for exploring and validating machine learning data.",
